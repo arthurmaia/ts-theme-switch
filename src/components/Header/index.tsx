@@ -1,11 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import Switch from 'react-switch';
+import { ThemeContext } from 'styled-components';
+import { shade } from 'polished'; // Used to take the custom color and put some opacity on it
 
 import { Container } from './styles';
 
-const Header: React.FC = () => {
+// Receive the function created in Header.tsx
+interface Props {
+    toggleTheme(): void;
+};
+
+const Header: React.FC<Props> = ({ toggleTheme }) => {
+    const { colors, title } = useContext(ThemeContext); // Used to take the colors of the ThemeContext
+
     return (
         <Container>
             Hello World
+            <Switch
+            onChange={toggleTheme}
+            checked={title === 'dark'}
+            checkedIcon={false}
+            uncheckedIcon={false}
+            height={10}
+            width={40}
+            handleDiameter={20}
+            offColor={shade(0.15, colors.primary)}
+            onColor={colors.secundary}
+            />
         </Container>
     );
 };

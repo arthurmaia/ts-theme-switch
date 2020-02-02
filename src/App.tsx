@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components'; // Used to inject the theme by a props
+import { ThemeProvider, DefaultTheme } from 'styled-components'; // Used to inject the theme by a props
 import usePersistedState from './utils/usePersistedState'; 
 // ^^ Function created on utils/ to help us to save on Local Storage
 
@@ -9,7 +9,7 @@ import GlobalStyle from './styles/global';
 import Header from './components/Header';
 
 const App = () => {
-  const [theme, setTheme] = usePersistedState('theme', light); // Set the default theme to light
+  const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', light); // Set the default theme to light
 
   // Function that change the themes
   const toggleTheme = () => {
